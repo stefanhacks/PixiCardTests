@@ -1,16 +1,12 @@
 import * as PIXI from 'pixi.js';
+import SceneManager from './controllers/SceneManager';
 import './style.css';
-
-const gameWidth = 800;
-const gameHeight = 600;
+import { GAME_HEIGHT, GAME_WIDTH } from './GameConstants';
 
 const app = new PIXI.Application({
-  backgroundColor: 0xd3d3d3,
-  width: gameWidth,
-  height: gameHeight,
+  width: GAME_WIDTH,
+  height: GAME_HEIGHT,
 });
-
-const { stage } = app;
 
 async function loadGameAssets(): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -25,40 +21,27 @@ async function loadGameAssets(): Promise<void> {
 
 function resizeCanvas(): void {
   const resize = () => {
-    app.renderer.resize(window.innerWidth, window.innerHeight);
-    app.stage.scale.x = window.innerWidth / gameWidth;
-    app.stage.scale.y = window.innerHeight / gameHeight;
+    const { innerHeight } = window;
+    const scale = innerHeight / GAME_HEIGHT;
+    const width = GAME_WIDTH * scale;
+
+    app.renderer.resize(width, innerHeight);
+    app.stage.scale.x = width / GAME_WIDTH;
+    app.stage.scale.y = innerHeight / GAME_HEIGHT;
   };
 
   resize();
   window.addEventListener('resize', resize);
 }
 
-function getBird(): PIXI.AnimatedSprite {
-  const bird = new PIXI.AnimatedSprite([
-    PIXI.Texture.from('birdUp.png'),
-    PIXI.Texture.from('birdMiddle.png'),
-    PIXI.Texture.from('birdDown.png'),
-  ]);
-
-  bird.loop = true;
-  bird.animationSpeed = 0.1;
-  bird.play();
-  bird.scale.set(3);
-
-  return bird;
-}
-
 window.onload = async (): Promise<void> => {
   await loadGameAssets();
 
+  app.view.style.display = 'block';
+  app.view.style.margin = '0 auto';
   document.body.appendChild(app.view);
 
   resizeCanvas();
 
-  const birdFromSprite = getBird();
-  birdFromSprite.anchor.set(0.5, 0.5);
-  birdFromSprite.position.set(gameWidth / 2, gameHeight / 2);
-
-  stage.addChild(birdFromSprite);
+  new SceneManager(app);
 };

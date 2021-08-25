@@ -21,7 +21,9 @@ module.exports = {
     'no-eq-null': 'error',
     'no-alert': 'warn',
     'no-console': 'warn',
+    'no-new': 'off',
     'no-underscore-dangle': 'off',
+    'no-unused-vars': 'off',
     'no-restricted-syntax': [
       'error',
       {
@@ -33,6 +35,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'class-methods-use-this': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-this-alias': 'error',
