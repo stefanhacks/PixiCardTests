@@ -13,18 +13,12 @@ const app = new PIXI.Application({
 const { stage } = app;
 
 async function loadGameAssets(): Promise<void> {
-  return new Promise((res, rej) => {
+  return new Promise((resolve, reject) => {
     const loader = PIXI.Loader.shared;
     loader.add('rabbit', './assets/simpleSpriteSheet.json');
 
-    loader.onComplete.once(() => {
-      res();
-    });
-
-    loader.onError.once(() => {
-      rej();
-    });
-
+    loader.onComplete.once(() => resolve());
+    loader.onError.once(() => reject());
     loader.load();
   });
 }
@@ -37,7 +31,6 @@ function resizeCanvas(): void {
   };
 
   resize();
-
   window.addEventListener('resize', resize);
 }
 

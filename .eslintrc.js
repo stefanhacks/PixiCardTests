@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  ignorePatterns: ['tests/*'],
   extends: ['airbnb-base'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
