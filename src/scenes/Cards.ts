@@ -16,6 +16,7 @@ export default class Cards extends PIXI.Container implements Scene {
   public start(app: PIXI.Application): void {
     this.app = app;
     this.makeCards();
+    this.makeCounter();
   }
 
   /**
@@ -66,5 +67,36 @@ export default class Cards extends PIXI.Container implements Scene {
 
     this.addChild(card);
     return card;
+  }
+
+  private makeCounter() {
+    const style = new PIXI.TextStyle({
+      fontSize: 20,
+      fontFamily: 'Arial',
+      fill: ['#ffffff'],
+    });
+
+    const text = new PIXI.Text('FPS: ..', new PIXI.TextStyle(style));
+
+    text.anchor.set(0, 0);
+    text.x = 10;
+    text.y = 10;
+
+    this.addChild(text);
+
+    let timer = 0;
+    const { ticker } = this.app as PIXI.Application;
+    const update = (delta: number) => {
+      timer += delta;
+
+      if (timer > 60) {
+        timer = 0;
+        const FPS = Math.round(PIXI.Ticker.shared.FPS);
+        text.text = `FPS: ${FPS}`;
+      }
+    };
+
+    ticker.add(update);
+    this.addChild(text);
   }
 }
