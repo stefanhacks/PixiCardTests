@@ -11,7 +11,7 @@ const app = new PIXI.Application({
 async function loadGameAssets(): Promise<void> {
   return new Promise((resolve, reject) => {
     const loader = PIXI.Loader.shared;
-    loader.add('rabbit', './assets/simpleSpriteSheet.json');
+    loader.add('card', './assets/card.png');
 
     loader.onComplete.once(() => resolve());
     loader.onError.once(() => reject());
