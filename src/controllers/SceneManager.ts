@@ -26,10 +26,21 @@ export default class SceneManager {
     this.addNewScene('Fire', Fire);
   }
 
+  /**
+   * Given key, returns a PIXI.Container from inner map. Could reach undefined.
+   * @param key String provided to map scene to.
+   * @returns Requested PIXI.Container, or undefined.
+   */
   private getScene(key: string): undefined | PIXI.Container {
     return this.scenes[key];
   }
 
+  /**
+   * Given key and PIXI.Container custom constructor, instantiates and adds it to memory.
+   * @param key String provided to map scene to.
+   * @param SceneComp Constructor in a PIXI.Container that accepts PIXI.Application as arg.
+   * @returns false if scene already exists in memory, the instantiated Container otherwise.
+   */
   public addNewScene(key: string, SceneComp: SceneConstructor): false | PIXI.Container {
     if (this.getScene(key) === undefined) {
       const newScene = new SceneComp(this.app);
@@ -42,6 +53,11 @@ export default class SceneManager {
     return false;
   }
 
+  /**
+   * Hides current scene and switches/starts requested one. Throws error if key isn't found.
+   * @param key String provided to map to scene.
+   * @returns true if scene is switched.
+   */
   public switchToScene(key: string): boolean {
     if (this.getScene(key) === undefined) {
       throw new Error(`Scene not found at key: ${key}`);

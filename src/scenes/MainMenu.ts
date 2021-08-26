@@ -25,6 +25,12 @@ export default class MainMenu extends PIXI.Container implements Scene {
 
   start(): void {}
 
+  /**
+   * Given label and BUTTON purpose, adds a button ready to read input.
+   * @param label Displayed String on top of button.
+   * @param purpose Enum for Purpose. Mapped in Scene Manager.
+   * @param position Y Position of where button should lie.
+   */
   private makeButton(label: string, purpose: BUTTONS, position: number): void {
     const text = new PIXI.Text(label, this.style);
     text.anchor.set(0.5, 0.5);

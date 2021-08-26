@@ -8,6 +8,10 @@ const app = new PIXI.Application({
   height: GAME_HEIGHT,
 });
 
+/**
+ * Loads whatever assets game still has.
+ * @returns Promise that resolves or rejects based on load status.
+ */
 async function loadGameAssets(): Promise<void> {
   return new Promise((resolve, reject) => {
     const loader = PIXI.Loader.shared;
@@ -20,6 +24,9 @@ async function loadGameAssets(): Promise<void> {
   });
 }
 
+/**
+ * Resizes canvas based on ratio. Somewhat inconsistent.
+ */
 function resizeCanvas(): void {
   const resize = () => {
     const { innerHeight } = window;

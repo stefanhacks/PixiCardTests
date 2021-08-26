@@ -19,6 +19,10 @@ export default class Words extends PIXI.Container implements Scene {
     this.setLoop(app, text);
   }
 
+  /**
+   * Makes PIXI.Text component and positions it accordingly.
+   * @returns aforementioned PIXI.Text component.
+   */
   private makeText(): PIXI.Text {
     const text = new PIXI.Text('Spinning up...', this.style);
 
@@ -30,6 +34,11 @@ export default class Words extends PIXI.Container implements Scene {
     return text;
   }
 
+  /**
+   * Readies logic loop to randomly change Text content.
+   * @param app PIXI.Application, so to access ticker.
+   * @param text TEXT component to randomize.
+   */
   private setLoop(app: PIXI.Application, text: PIXI.Text): void {
     let timer = 0;
 
@@ -53,6 +62,11 @@ export default class Words extends PIXI.Container implements Scene {
     app.ticker.add(change);
   }
 
+  /**
+   * 50% of the time returns the string 'PixiJS'.
+   * In the reminder, randomizes and returns an emoji.
+   * @returns
+   */
   private getImageOrText(): String {
     const chance = Math.random();
     if (chance > 0.5) {
