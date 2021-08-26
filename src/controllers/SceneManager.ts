@@ -1,32 +1,38 @@
 import * as PIXI from 'pixi.js';
 import MainMenu from '../scenes/MainMenu';
+import Cards from '../scenes/Cards';
 import SWITCH_SCENE from '../scenes/SceneEvents';
-import { BUTTON_PURPOSE } from '../GameConstants';
+import { BUTTONS, Scene } from '../GameConstants';
+
+type SceneConstructor = new (app: PIXI.Application) => PIXI.Container;
 
 export default class SceneManager {
   private app: PIXI.Application;
 
   private scenes: Record<string, PIXI.Container> = {};
 
-  private currentScene: PIXI.Container;
+  private currentScene: Scene;
 
   constructor(app: PIXI.Application) {
     this.app = app;
-    this.currentScene = this.addNewScene('MainMenu', MainMenu) as PIXI.Container;
+    this.currentScene = this.addNewScene('MainMenu', MainMenu) as Scene;
     this.currentScene.visible = true;
+    this.currentScene.on(SWITCH_SCENE, (target: BUTTONS) => this.switchToScene(target));
 
-    this.currentScene.on(SWITCH_SCENE, (target: BUTTON_PURPOSE) => this.switchToScene(target));
+    const cards = this.addNewScene('Card', Cards);
+    (cards as Cards).app = this.app;
   }
 
   private getScene(key: string): undefined | PIXI.Container {
     return this.scenes[key];
   }
 
-  public addNewScene(key: string, Scene: new () => PIXI.Container): false | PIXI.Container {
+  public addNewScene(key: string, SceneComp: SceneConstructor): false | PIXI.Container {
     if (this.getScene(key) === undefined) {
-      const newScene = new Scene();
+      const newScene = new SceneComp(this.app);
       this.scenes[key] = newScene;
       this.app.stage.addChild(newScene);
+      newScene.visible = false;
       return newScene;
     }
 
@@ -42,7 +48,8 @@ export default class SceneManager {
 
     const target = this.scenes[key];
     target.visible = true;
-    this.currentScene = target;
+    this.currentScene = target as Scene;
+    this.currentScene.start(this.app);
 
     return true;
   }

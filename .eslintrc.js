@@ -34,6 +34,7 @@ module.exports = {
     ],
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
+    'object-curly-newline': 'off',
     'class-methods-use-this': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/explicit-module-boundary-types': 'error',

@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
 import SceneManager from './controllers/SceneManager';
-import './style.css';
 import { GAME_HEIGHT, GAME_WIDTH } from './GameConstants';
+import './style.css';
 
 const app = new PIXI.Application({
   width: GAME_WIDTH,
