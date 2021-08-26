@@ -56,7 +56,7 @@ export default class Words extends PIXI.Container implements Scene {
   private getImageOrText(): String {
     const chance = Math.random();
     if (chance > 0.5) {
-      return 'Text';
+      return 'PixiJS';
     }
 
     return emojis[Math.floor(Math.random() * emojis.length)];
