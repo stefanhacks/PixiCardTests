@@ -18,6 +18,9 @@ export default class Cards extends PIXI.Container implements Scene {
     this.makeCards();
   }
 
+  /**
+   * Makes all cards on the deck.
+   */
   private makeCards(): void {
     if (this.app === null) return;
 
@@ -26,6 +29,11 @@ export default class Cards extends PIXI.Container implements Scene {
     }
   }
 
+  /**
+   * Makes a single card and readies it for animation.
+   * @param i Number of the card in question. Used for timing.
+   * @returns PIXI.Sprite, which is the instantiated card.
+   */
   private makeSingleCard(i: number): PIXI.Sprite {
     const card = PIXI.Sprite.from('card');
     const originX = GAME_WIDTH / 2 - 200;

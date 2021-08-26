@@ -1,13 +1,15 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/14e7ef42-5c90-44c8-a7ec-0b6e20c59735/deploy-status)](https://pixi-typescript-boilerplate.netlify.com) !
+## Shortcomings:
 
-# Based on the pixi-typescript-boilerplate from yordan-kanchelov.
-
-`git clone --depth=1 --branch=master https://github.com/yordan-kanchelov/pixi-typescript-boilerplate`
+- Better type support would be in interesting.
+- More/BETTER structured type or interfaces would allow avoiding casting objects, like `as Scene`.
+- Boilerplate allows for tests with jest. Time constraints didn't.
+- Extensive testing on mobile devices for resizing wasn't possible. Small issues were found and switching to Desktop mode seems to fix some. Investigation needed.
 
 ## Commands:
 
 -   `npm run build` - starts build procedure
 -   `npm run start` - start watching for files and open's server on localhost:8080
--   `npm run test` - run tests
--   `npm run code-coverage` - generate code coverage report
--   `npm run code-style-check` - run's eslint and prettier check on your code
+
+## Based on yordan-kanchelov's [pixi-typescript-boilerplate](https://github.com/yordan-kanchelov/pixi-typescript-boilerplate).
+
+`git clone --depth=1 --branch=master https://github.com/yordan-kanchelov/pixi-typescript-boilerplate`
