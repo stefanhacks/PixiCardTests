@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import MainMenu from '../scenes/MainMenu';
 import Cards from '../scenes/Cards';
 import Words from '../scenes/Words';
+import Fire from '../scenes/Fire';
 import SWITCH_SCENE from '../scenes/SceneEvents';
 import { BUTTONS, Scene } from '../GameConstants';
 
@@ -22,6 +23,7 @@ export default class SceneManager {
 
     this.addNewScene('Card', Cards);
     this.addNewScene('Word', Words);
+    this.addNewScene('Fire', Fire);
   }
 
   private getScene(key: string): undefined | PIXI.Container {

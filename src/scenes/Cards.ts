@@ -27,7 +27,7 @@ export default class Cards extends PIXI.Container implements Scene {
   }
 
   private makeSingleCard(i: number): PIXI.Sprite {
-    const card = PIXI.Sprite.from('assets/card.png');
+    const card = PIXI.Sprite.from('card');
     const originX = GAME_WIDTH / 2 - 200;
     const originY = 250 + i / 4;
 

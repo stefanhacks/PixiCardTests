@@ -12,6 +12,7 @@ async function loadGameAssets(): Promise<void> {
   return new Promise((resolve, reject) => {
     const loader = PIXI.Loader.shared;
     loader.add('card', './assets/card.png');
+    loader.add('particle', './assets/particle.png');
 
     loader.onComplete.once(() => resolve());
     loader.onError.once(() => reject());

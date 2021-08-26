@@ -1,5 +1,9 @@
 import * as PIXI from 'pixi.js';
 
+export interface Scene extends PIXI.Container {
+  start(app: PIXI.Application): void;
+}
+
 export const GAME_WIDTH = 750;
 
 export const GAME_HEIGHT = 1334;
@@ -10,9 +14,59 @@ export enum BUTTONS {
   FIRE = 'Fire',
 }
 
-export interface Scene extends PIXI.Container {
-  start(app: PIXI.Application): void;
-}
+export const FIRE_EMITTER = {
+  alpha: {
+    start: 0.62,
+    end: 0,
+  },
+  scale: {
+    start: 2,
+    end: 0.7,
+    minimumScaleMultiplier: 1,
+  },
+  color: {
+    start: '#fff191',
+    end: '#ff622c',
+  },
+  speed: {
+    start: 126,
+    end: 50,
+    minimumSpeedMultiplier: 1,
+  },
+  acceleration: {
+    x: 0,
+    y: 0,
+  },
+  maxSpeed: 0,
+  startRotation: {
+    min: -80,
+    max: -100,
+  },
+  noRotation: false,
+  rotationSpeed: {
+    min: -10,
+    max: 20,
+  },
+  lifetime: {
+    min: 0.1,
+    max: 1.7,
+  },
+  blendMode: 'normal',
+  frequency: 0.001,
+  emitterLifetime: -1,
+  maxParticles: 10,
+  pos: {
+    x: 0,
+    y: 0,
+  },
+  addAtBack: false,
+  spawnType: 'circle',
+  spawnCircle: {
+    x: 0,
+    y: 0,
+    r: 2,
+  },
+};
 
 export const emojis = [
   '😄',
