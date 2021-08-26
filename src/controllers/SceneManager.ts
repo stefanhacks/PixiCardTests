@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import MainMenu from '../scenes/MainMenu';
 import Cards from '../scenes/Cards';
+import Words from '../scenes/Words';
 import SWITCH_SCENE from '../scenes/SceneEvents';
 import { BUTTONS, Scene } from '../GameConstants';
 
@@ -19,8 +20,8 @@ export default class SceneManager {
     this.currentScene.visible = true;
     this.currentScene.on(SWITCH_SCENE, (target: BUTTONS) => this.switchToScene(target));
 
-    const cards = this.addNewScene('Card', Cards);
-    (cards as Cards).app = this.app;
+    this.addNewScene('Card', Cards);
+    this.addNewScene('Word', Words);
   }
 
   private getScene(key: string): undefined | PIXI.Container {
