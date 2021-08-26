@@ -69,6 +69,9 @@ export default class Cards extends PIXI.Container implements Scene {
     return card;
   }
 
+  /**
+   * Adds a small FPS counter to the top left of the game screen.
+   */
   private makeCounter() {
     const style = new PIXI.TextStyle({
       fontSize: 20,
